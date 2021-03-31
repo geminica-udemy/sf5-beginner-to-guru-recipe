@@ -45,5 +45,9 @@ relationship ManyToMany {
 }
 
 relationship OneToMany {
-	Recipe{Ingredient} to Ingredient,
+	Recipe{ingredients} to Ingredient
+}
+
+relationship ManyToOne {
+	Ingredient{recipe} to Recipe
 }
