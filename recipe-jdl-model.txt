@@ -20,7 +20,7 @@ entity Ingredient {
 }
 
 entity Category {
-	categoryName String
+	name String
 }
 
 entity Notes {
@@ -41,7 +41,7 @@ relationship OneToOne {
 }
 
 relationship ManyToMany {
-	Recipe{recipe(category)} to Category{recipe}
+	Recipe{categories} to Category{recipes}
 }
 
 relationship OneToMany {
