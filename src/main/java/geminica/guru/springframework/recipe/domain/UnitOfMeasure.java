@@ -28,4 +28,13 @@ public class UnitOfMeasure {
   public void setUom(String uom) {
     this.uom = uom;
   }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("UnitOfMeasure{");
+    sb.append("id=").append(id);
+    sb.append(", uom='").append(uom).append('\'');
+    sb.append('}');
+    return sb.toString();
+  }
 }
