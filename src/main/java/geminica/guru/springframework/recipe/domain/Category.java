@@ -1,5 +1,6 @@
 package geminica.guru.springframework.recipe.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ public class Category {
   private String name;
 
   @ManyToMany(mappedBy = "categories")
-  private Set<Recipe> recipes;
+  private Set<Recipe> recipes = new HashSet<>();
 
   public Long getId() {
     return id;
