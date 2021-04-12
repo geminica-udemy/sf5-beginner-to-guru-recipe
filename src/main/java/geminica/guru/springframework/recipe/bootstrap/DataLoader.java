@@ -10,9 +10,12 @@ import geminica.guru.springframework.recipe.repositories.CategoryRepository;
 import geminica.guru.springframework.recipe.repositories.RecipeRepository;
 import geminica.guru.springframework.recipe.repositories.UnitOfMeasureRepository;
 import java.math.BigDecimal;
+import javax.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
   private final CategoryRepository categoryRepository;
@@ -29,6 +32,7 @@ public class DataLoader implements CommandLineRunner {
   }
 
   @Override
+  @Transactional
   public void run(String... args) throws Exception {
     Category mexican = category("Mexican");
     Category american = category("American");
@@ -84,7 +88,7 @@ public class DataLoader implements CommandLineRunner {
         .addIngredient(ingredient(null, piece, "Red radishes or jicama, to garnish"))
         .addIngredient(ingredient(null, piece, "Tortilla chips, to serve"));
     recipeRepository.save(perfectGuacamole);
-    System.out.println("Perfect Guacamole recipe loaded");
+    log.info("Perfect Guacamole recipe loaded");
 
     Recipe spicyChicken = new Recipe();
     spicyChicken.setDescription("Spicy Grilled Chicken Tacos");
@@ -136,7 +140,7 @@ public class DataLoader implements CommandLineRunner {
             ingredient(BigDecimal.valueOf(0.25), cup, "sour cream thinned with 1/4 cup milk"))
         .addIngredient(ingredient(BigDecimal.valueOf(1), piece, "lime, cut into wedges"));
     recipeRepository.save(spicyChicken);
-    System.out.println("Spicy Chicken recipe loaded");
+    log.info("Spicy Chicken recipe loaded");
   }
 
   private Category category(String category) {
