@@ -1,6 +1,8 @@
 package geminica.guru.springframework.recipe.services.db;
 
 import geminica.guru.springframework.recipe.services.CrudService;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,8 +15,10 @@ class AbstractDbService<T, ID, R extends CrudRepository<T, ID>> implements CrudS
   }
 
   @Override
-  public Iterable<T> findAll() {
+  public Set<T> findAll() {
     log.info("trying to get all :D");
-    return repository.findAll();
+    Set<T> result = new HashSet<>();
+    repository.findAll().forEach(result::add);
+    return result;
   }
 }
