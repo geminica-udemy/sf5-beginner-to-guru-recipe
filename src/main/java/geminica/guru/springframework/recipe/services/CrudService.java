@@ -1,5 +1,7 @@
 package geminica.guru.springframework.recipe.services;
 
+import java.util.Set;
+
 public interface CrudService<T, ID> {
-  Iterable<T> findAll();
+  Set<T> findAll();
 }
