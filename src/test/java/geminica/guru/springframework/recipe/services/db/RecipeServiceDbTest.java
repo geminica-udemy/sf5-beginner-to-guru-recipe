@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import geminica.guru.springframework.recipe.domain.Recipe;
 import geminica.guru.springframework.recipe.repositories.RecipeRepository;
+import java.util.Optional;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,21 @@ class RecipeServiceDbTest {
   }
 
   @Test
-  void getRecipes() {
+  void getRecipeByIdTest() {
+    // given
+    Long id = 1L;
+    Recipe expected = new Recipe();
+    expected.setId(id);
+    when(recipeRepository.findById(id)).thenReturn(Optional.of(expected));
+
+    // when
+    Recipe result = recipeService.findById(id);
+    assertEquals(expected, result);
+    verify(recipeRepository).findById(id);
+  }
+
+  @Test
+  void getRecipesTest() {
     // given
     Recipe expected = new Recipe();
     when(recipeRepository.findAll()).thenReturn(Set.of(new Recipe()));

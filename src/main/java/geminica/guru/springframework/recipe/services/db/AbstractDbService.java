@@ -21,4 +21,10 @@ class AbstractDbService<T, ID, R extends CrudRepository<T, ID>> implements CrudS
     repository.findAll().forEach(result::add);
     return result;
   }
+
+  @Override
+  public T findById(ID id) {
+    log.info("trying to get by id {}", id);
+    return repository.findById(id).orElseThrow(() -> new RuntimeException("Recipe Not Found!"));
+  }
 }
