@@ -23,14 +23,14 @@
   <div class="col-md-6 col-md-offset-3">
     <div class="card card-primary">
       <div class="card-header">
-        <h1 class="card-title" th:text="${recipe.description}">My Recipies!</h1>
+        <h2 class="card-title" th:text="${recipe.description}">My Recipies!</h2>
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-2">
             <h5>Categories:</h5>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-10">
             <ul>
               <!--/*@thymesVar id="recipe" type="geminica.guru.springframework.recipe.domain.Recipe"*/-->
               <!--/*@thymesVar id="category" type="geminica.guru.springframework.recipe.domain.Category"*/-->
@@ -40,17 +40,104 @@
         </div>
         <div class="row">
           <!--/*@thymesVar id="recipe" type="geminica.guru.springframework.recipe.domain.Recipe"*/-->
-          <div class="col-md-3">
+          <div class="col-md-2">
             <h5>Prep Time:</h5>
           </div>
-          <div class="col-md-3">
-            <h5 th:text="${recipe?.prepTime}">1s</h5>
+          <div class="col-md-2">
+            <h5 th:text="${recipe?.prepTime + ' Min'}">1s</h5>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <h5>Difficulty:</h5>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <h5 th:text="${recipe?.difficulty}">Some</h5>
+          </div>
+        </div>
+        <div class="row">
+          <!--/*@thymesVar id="recipe" type="geminica.guru.springframework.recipe.domain.Recipe"*/-->
+          <div class="col-md-2">
+            <h5>Cook Time:</h5>
+          </div>
+          <div class="col-md-2">
+            <h5 th:text="${recipe?.cookTime + ' Min'}">1s</h5>
+          </div>
+          <div class="col-md-2">
+            <h5>Servings:</h5>
+          </div>
+          <div class="col-md-6">
+            <h5 th:text="${recipe?.servings}">5</h5>
+          </div>
+        </div>
+        <div class="row">
+          <!--/*@thymesVar id="recipe" type="geminica.guru.springframework.recipe.domain.Recipe"*/-->
+          <div class="col-md-2">
+            <h5>Source:</h5>
+          </div>
+          <div class="col-md-2">
+            <h5 th:text="${recipe?.source}">source</h5>
+          </div>
+          <div class="col-md-2">
+            <h5>URL:</h5>
+          </div>
+          <div class="col-md-6">
+            <p th:text="${recipe?.url}">https://foo.bar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Ingredients</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <ul>
+              <!--/*@thymesVar id="recipe" type="geminica.guru.springframework.recipe.domain.Recipe"*/-->
+              <!--/*@thymesVar id="ingredient" type="geminica.guru.springframework.recipe.domain.Ingredient"*/-->
+              <li th:each="ingredient:${recipe.ingredients}"
+                  th:text="${ingredient?.amount + ' ' + ingredient?.uom?.uom + ' - ' + ingredient?.description}">
+                1 - tbs - Milk
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Directions</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <!--/*@thymesVar id="recipe" type="geminica.guru.springframework.recipe.domain.Recipe"*/-->
+            <pre th:text="${recipe?.directions}">Some lengthy directions</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Notes</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <!--/*@thymesVar id="recipe" type="geminica.guru.springframework.recipe.domain.Recipe"*/-->
+            <p th:text="${recipe?.notes.notes}">Some lengthy directions</p>
           </div>
         </div>
       </div>
