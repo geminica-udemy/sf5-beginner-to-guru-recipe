@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import geminica.guru.springframework.recipe.converters.RecipeCommandToRecipe;
+import geminica.guru.springframework.recipe.converters.RecipeToRecipeCommand;
 import geminica.guru.springframework.recipe.domain.Recipe;
 import geminica.guru.springframework.recipe.repositories.RecipeRepository;
 import java.util.Optional;
@@ -17,11 +19,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class RecipeServiceDbTest {
   private RecipeServiceDb recipeService;
+
   @Mock RecipeRepository recipeRepository;
+  @Mock RecipeCommandToRecipe fromCommand;
+  @Mock RecipeToRecipeCommand toCommand;
 
   @BeforeEach
   void setUp() {
-    recipeService = new RecipeServiceDb(recipeRepository);
+    recipeService = new RecipeServiceDb(recipeRepository, fromCommand, toCommand);
   }
 
   @Test
